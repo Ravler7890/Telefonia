@@ -13,7 +13,8 @@ void Number::add_number() {
 
 	ss.str("");
 	ss << "Insert into phone_number(user_id) values (" << this->user_id << ")";
-	simple_request(ss.str());
+	if (simple_request(ss.str()))
+		std::cout << "Numer dodany pomyslnie" << std::endl;
 
 }
 

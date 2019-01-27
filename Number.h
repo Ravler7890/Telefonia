@@ -15,7 +15,5 @@ public:
 	Number(int user_id = 0, std::string phone_number = "777000000");
 	bool check_number();
 	void add_number();
-	void drop_number();
-	void show_number();
 
 };

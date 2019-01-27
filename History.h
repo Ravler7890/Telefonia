@@ -4,6 +4,7 @@
 #include "connection.h"
 #include <sstream>
 #include <time.h>
+#include <iomanip>
 
 class History {
 
@@ -20,7 +21,7 @@ public:
 	History(std::string = "777000000", std::string = "777000001");
 	void history_add();
 	void history_manual_add();
-	void history_delete();
-
+	void history_show(int user_id);
+	void history_show();
 
 };

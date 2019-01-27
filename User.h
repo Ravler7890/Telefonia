@@ -5,6 +5,7 @@
 #include <vector>
 #include <sstream>
 #include <time.h>
+#include <iomanip>
 
 #include "Number.h"
 #include "connection.h"
@@ -25,13 +26,11 @@ private:
 
 public:
 
-	User(int = 0);
+	User(int = 0, int = 0);
 
 	void add_user();
 	void drop_user();
-	void show_user();
-	void show_all();
-
+	void show_all_user();
 	bool valid(std::string dane);
 
 };

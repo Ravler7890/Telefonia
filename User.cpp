@@ -2,13 +2,12 @@
 
 
 
-User::User(int taccess) {
+User::User(int taccess, int user_id) {
 
 	this->access = taccess;
+	this->user_id = user_id;
 
 }
-
-//lols
 
 void User::add_user() {
 
@@ -143,7 +142,7 @@ void User::add_user() {
 
 
 	ss.str("");
-	ss << "INSERT INTO user(first_name, second_name, birth_date, acces, sex, login, password) values ('"
+	ss << "INSERT INTO user(first_name, second_name, birth_date, access, sex, login, password) values ('"
 		<< this->first_name << "','" << this->second_name << "','" << this->birth_date->tm_year << "-"
 		<< this->birth_date->tm_mon << "-" << this->birth_date->tm_mday << "'," << this->access << ", '" << sex << "','"
 		<< this->login << "','" << this->password << "');";
@@ -210,6 +209,8 @@ void User::drop_user() {
 	ss << "select * from user where user_id =" << this->user_id;
 	if (request(ss.str())->row_count >= 1) {
 
+		std::cout << "Zostana usuniete wszystkie dane wlacznie z numerami." << std::endl;
+
 		ss.str("");
 		ss << "delete from phone_number where user_id = " << this->user_id;
 		if (simple_request(ss.str()))
@@ -227,4 +228,51 @@ void User::drop_user() {
 	}
 
 
+}
+
+void User::show_all_user() {
+
+
+	MYSQL_ROW row;
+	MYSQL_RES * res;
+
+	MYSQL_ROW row2;
+	MYSQL_RES * res2;
+
+	std::stringstream ss;
+	ss << "select * from user";
+	res = request(ss.str());
+
+	std::cout << std::left << std::setw(5) << "ID";
+	std::cout << std::left << std::setw(20) << "Imie";
+	std::cout << std::left << std::setw(20) << "Nazwisko";
+	std::cout << std::left << std::setw(20) << "Data urodz";
+	std::cout << std::left << std::setw(10) << "Plec";
+	std::cout << std::left << std::setw(10) << "Numery uzytkownika";
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	res = request(ss.str());
+
+	while (row = mysql_fetch_row(res)) {
+
+		std::cout << std::left << std::setw(5) << row[0];
+		std::cout << std::left << std::setw(20) << row[2];
+		std::cout << std::left << std::setw(20) << row[1];
+		std::cout << std::left << std::setw(20) << row[3];
+		std::cout << std::left << std::setw(10) << row[5];
+
+		ss.str("");
+		ss << "select phone_number from phone_number where user_id =" << atoi(row[0]);
+		res2 = request(ss.str());
+
+		while (row2 = mysql_fetch_row(res2)) {
+
+			std::cout << std::left << std::setw(10) << row2[0];
+
+		}
+		std::cout << std::endl;
+
+
+	}
 }
