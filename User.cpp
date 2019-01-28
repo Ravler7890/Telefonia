@@ -240,7 +240,7 @@ void User::show_all_user() {
 	MYSQL_RES * res2;
 
 	std::stringstream ss;
-	ss << "select * from user";
+	ss << "select * from user order by user_id";
 	res = request(ss.str());
 
 	std::cout << std::left << std::setw(5) << "ID";

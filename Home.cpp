@@ -12,10 +12,6 @@ void statistics();
 
 int main(void) {
 
-	while (1) {
-		if (getchar())
-			break;
-	}
 
 	std::stringstream ss;
 	std::string login, password;
@@ -290,6 +286,7 @@ void admin_menu(int user_id) {
 			std::cout << "Podaj ID uzytkownika, ktoremu chcesz dodac numer: "; std::cin >> user_id2;
 
 			if (1) {
+				ss.str("");
 				ss << "select * from user where user_id =" << user_id2;
 				if (request(ss.str())->row_count >= 1) {
 						User u1(0,user_id2);
@@ -306,7 +303,7 @@ void admin_menu(int user_id) {
 
 			std::cout << "Podaj ID uzytkownika, ktoremu chcesz dodac numer: "; std::cin >> user_id2;
 			if (1) {
-
+				ss.str("");
 				ss << "select * from user where user_id =" << user_id2;
 				if (request(ss.str())->row_count >= 1) {
 					Number n1(user_id2, "default");
@@ -359,6 +356,7 @@ void statistics() {
 
 	std::cout << std::endl;
 
+
 	ss << "select count(*) from user";
 	row = mysql_fetch_row(request(ss.str()));
 	variable1 = atoi(row[0]);
@@ -371,7 +369,7 @@ void statistics() {
 	variable3 = variable2 / variable1;
 
 		std::cout.precision(2);
-		std::cout << variable3 * 100 <<" % uzytkownikow to kobiety" << std::endl;
+		std::cout << variable3 * 100 << " % uzytkownikow to kobiety" << std::endl;
 		std::cout << (1 - variable3) * 100 << " % uzytkownikow to mezczyzni" << std::endl;
 
 	ss.str("");
@@ -380,5 +378,10 @@ void statistics() {
 	variable1 = atoi(row[0]);
 	std::cout <<"Sredni czas polaczenia " << (int)variable1/360 <<":" << ((int)variable1 % 3600) / 60 <<":" << (int)variable1 % 60 << std::endl;
 
+	ss.str("");
+	ss << "SELECT AVG(TIMESTAMPDIFF(YEAR, birth_date, CURDATE())) AS age from user";
+	row = mysql_fetch_row(request(ss.str()));
+	variable1 = atoi(row[0]);
+	std::cout << "Srednia wieku uzytkownikow " << (float)variable1 << std::endl;
 
 }

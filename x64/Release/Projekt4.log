@@ -1,8 +1,12 @@
-﻿  History.cpp
-d:\sem iii\programowanie obiektowe\projekt4\projekt4\history.cpp(34): warning C4244: "=": konwersja z "time_t" do "int", możliwa utrata danych
+﻿  Home.cpp
+d:\sem iii\programowanie obiektowe\projekt4\projekt4\home.cpp(19): warning C4101: "access": lokalna zmienna, do której nie istnieje odwołanie
+d:\sem iii\programowanie obiektowe\projekt4\projekt4\home.cpp(362): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+d:\sem iii\programowanie obiektowe\projekt4\projekt4\home.cpp(367): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+d:\sem iii\programowanie obiektowe\projekt4\projekt4\home.cpp(378): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
+d:\sem iii\programowanie obiektowe\projekt4\projekt4\home.cpp(384): warning C4244: "=": konwersja z "int" do "float", możliwa utrata danych
   Trwa generowanie kodu
   2 of 281 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    7 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   Projekt4.vcxproj -> D:\SEM III\Programowanie Obiektowe\Projekt4\x64\Release\Projekt4.exe
